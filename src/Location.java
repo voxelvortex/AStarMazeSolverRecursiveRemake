@@ -20,4 +20,8 @@ public class Location {
     public void setCol(int col){
         this.col = col;
     }
+
+    public boolean equals(Location other){
+        return row == other.getRow() && col == other.getCol();
+    }
 }
