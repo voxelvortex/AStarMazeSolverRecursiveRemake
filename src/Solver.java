@@ -31,6 +31,7 @@ public class Solver {
                 }
 
                 if(potentialSolution.isValid()){
+                    checked.add(potentialSolution.getLastWNode());
                     configs.add(potentialSolution);
                 }
             }
