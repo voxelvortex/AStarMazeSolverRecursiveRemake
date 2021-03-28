@@ -1,5 +1,3 @@
-
-
 public class Maze {
     public WNode[][] maze;
 
