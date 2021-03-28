@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        args = new String[] {"mazes\\maze1XL.png"};
+        //args = new String[] {"mazes\\maze1.png"};
         if(args.length >= 1 && args[0].equals("help"))
             args = new String[] {};
         if(args.length != 1) {
@@ -34,6 +34,11 @@ public class Main {
         ArrayList<WNode> solution = solver.solve();
         long completionTime = System.currentTimeMillis() - startTime;
         System.out.println("The maze was solved in "+completionTime+" milliseconds!");
+
+        if(solution == null){
+            System.out.println("There aren't any possible solutions!");
+            System.exit(0);
+        }
 
         //draw the solution on the imported image
         System.out.println("Printing img...");
