@@ -1,16 +1,21 @@
-public class WNode extends Node implements Comparable<WNode>{
+public class WNode implements Comparable<WNode>{
     private int weight;
-
-    public WNode(Location value, int weight){
-        super(value);
-        this.weight = weight;
-    }
-    public WNode(Location value, Node parent, int weight){
-        super(value, parent);
-        this.weight = weight;
-    }
+    private Location value;
+    
     public WNode(Location value){
-        super(value);
+        this.value = value;
+    }
+    public WNode(Location value, int weight){
+        this.value = value;
+        this.weight = weight;
+    }
+    
+    public Location getValue(){
+        return value;
+    }
+
+    public void setValue(Location value){
+        this.value = value;
     }
 
     public int getWeight(){
