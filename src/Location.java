@@ -26,4 +26,8 @@ public class Location {
     public boolean equals(Location other){
         return row == other.getRow() && col == other.getCol();
     }
+
+    public String toString(){
+        return "{"+row+", "+col+"} isWall: "+isWall;
+    }
 }
