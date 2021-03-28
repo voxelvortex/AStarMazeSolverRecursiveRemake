@@ -36,7 +36,7 @@ public class MazeMaker {
                             break;
                         }
                     if(same) {
-                        Location currentLoc = new Location(row, col, i==0);
+                        Location currentLoc = new Location(row, col, i==1);
                         WNode currentNode = new WNode(currentLoc);
                         maze[row][col] = currentNode;
 
@@ -57,8 +57,8 @@ public class MazeMaker {
     public void drawOnImg(ArrayList<WNode> solution) {
         for(WNode node: solution) {
 
-            int x = node.getValue().getCol();
-            int y = node.getValue().getRow();;
+            int y = node.getValue().getCol();
+            int x = node.getValue().getRow();;
             int color = (255 << 24) | (255 << 8); //24A 16R 8G 0B
 
             image.setRGB(x, y, color);
