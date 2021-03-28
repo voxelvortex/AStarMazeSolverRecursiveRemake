@@ -17,7 +17,7 @@ public class MazeConfig implements Comparable<MazeConfig>{
     }
 
     public Set<MazeConfig> getSuccessors(Maze maze, HashSet<WNode> checked){
-        WNode current = path.get( path.size() -1 ); //get last item, should be the most recent thing in the 
+        WNode current = getLastWNode(); //get last item, should be the most recent thing in the 
         Set<MazeConfig> possibleMoves = new HashSet<>();
 
         for(int deltaRow = -1; deltaRow <= 1; deltaRow++){
@@ -52,7 +52,11 @@ public class MazeConfig implements Comparable<MazeConfig>{
     }
 
     public boolean isGoal(Location end){
-        return path.get( path.size() - 1 ).getValue().equals(end);
+        return getLastWNode().getValue().equals(end);
+    }
+
+    public WNode getLastWNode(){
+        return path.get( path.size() - 1 );
     }
 
     public int getWeight(){
