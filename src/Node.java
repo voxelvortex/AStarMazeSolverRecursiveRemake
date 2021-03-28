@@ -1,30 +1,30 @@
-public class Node<G> {
-    private Node parent;
-    private G value;
+public class Node {
+    protected Node parent;
+    protected Location value;
 
-    public Node(G value){
+    public Node(Location value){
         this.parent = null;
         this.value = value;
     }
 
-    public Node(G value, Node parent){
+    public Node(Location value, Node parent){
         this.parent = parent;
         this.value = value;
     }
 
-    public Node<G> getParent(){
+    public Node getParent(){
         return parent;
     }
 
-    public void setParent(Node<G> parent){
+    public void setParent(Node parent){
         this.parent = parent;
     }
 
-    public G getValue(){
+    public Location getValue(){
         return value;
     }
 
-    public void setValue(G value){
+    public void setValue(Location value){
         this.value = value;
     }
 
