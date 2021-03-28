@@ -3,13 +3,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MazeConfig {
-    private Maze maze;
     ArrayList<WNode<Location>> path;
     private int weight;
 
     public MazeConfig(Maze maze, ArrayList<WNode<Location>> path){
-        this.maze = maze;
-
         if(path.size() == 0)
             throw new IllegalArgumentException("The path cannot be empty");
         this.path = path;
@@ -19,7 +16,7 @@ public class MazeConfig {
         }
     }
 
-    public Set<MazeConfig> getSuccessors(){
+    public Set<MazeConfig> getSuccessors(Maze maze){
         WNode<Location> current = path.get( path.size() -1 ); //get last item, should be the most recent thing in the 
         Set<MazeConfig> possibleMoves = new HashSet<>();
 
