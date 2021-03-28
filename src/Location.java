@@ -3,7 +3,9 @@ public class Location {
     private int col;
     private boolean isWall;
     
-    public Location(int row, int col){this(row,col,false);}
+    public Location(int row, int col){
+        this(row,col,false);
+    }
     public Location(int row, int col, boolean isWall){
         this.row = row;
         this.col = col;
