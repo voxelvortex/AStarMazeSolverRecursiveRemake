@@ -1,9 +1,9 @@
-import java.util.Arrays;
+
 
 public class Maze {
-    public WNode<Location>[][] maze;
+    public WNode[][] maze;
 
-    public Maze(WNode<Location>[][] maze){
+    public Maze(WNode[][] maze){
         this.maze = new WNode[maze.length][maze[0].length]; // We need to make a deep copy so I can implement backtracking later
 
         for(int r = 0; r < maze.length; r++){
@@ -17,10 +17,10 @@ public class Maze {
         this.maze = new WNode[row][col];
     }
 
-    public void setNode(int row, int col, WNode<Location> loc){
+    public void setNode(int row, int col, WNode loc){
         maze[row][col] = loc;
     }
-    public WNode<Location> getNode(int row, int col){
+    public WNode getNode(int row, int col){
         return maze[row][col];
     }
 }
