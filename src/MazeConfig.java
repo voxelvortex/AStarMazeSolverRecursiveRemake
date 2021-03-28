@@ -25,7 +25,7 @@ public class MazeConfig implements Comparable<MazeConfig>{
 
         for(int deltaRow = -1; deltaRow <= 1; deltaRow++){
             for(int deltaCol = -1; deltaCol <= 1; deltaCol++){
-                if(deltaRow + deltaCol == 0)
+                if(deltaRow + deltaCol == 0 || deltaRow + deltaCol == 2  || deltaRow + deltaCol == -2)
                     continue; //skip diagonals and middle
                 if(currentRow + deltaRow < 0 || currentRow + deltaRow >= maze.getHeight())
                     continue;
@@ -33,13 +33,13 @@ public class MazeConfig implements Comparable<MazeConfig>{
                     continue;
 
                 WNode node = maze.getNode(currentRow + deltaRow, currentCol + deltaCol);
-                if(checked.contains(node))
+
+                if(node == null || checked.contains(node) || node.getValue().isWall())
                     continue;
 
                 ArrayList<WNode> newPath = new ArrayList<>();
                 newPath.addAll(path);
 
-                
                 newPath.add(node);
                 
                 possibleMoves.add( new MazeConfig(newPath) );
