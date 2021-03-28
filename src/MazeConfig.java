@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MazeConfig {
-    ArrayList<WNode<Location>> path;
+public class MazeConfig implements Comparable<MazeConfig>{
+    ArrayList<WNode> path;
     private int weight;
 
-    public MazeConfig(Maze maze, ArrayList<WNode<Location>> path){
+    public MazeConfig(ArrayList<WNode> path){
         if(path.size() == 0)
             throw new IllegalArgumentException("The path cannot be empty");
         this.path = path;
@@ -16,8 +16,8 @@ public class MazeConfig {
         }
     }
 
-    public Set<MazeConfig> getSuccessors(Maze maze){
-        WNode<Location> current = path.get( path.size() -1 ); //get last item, should be the most recent thing in the 
+    public Set<MazeConfig> getSuccessors(Maze maze, HashSet<WNode> checked){
+        WNode current = path.get( path.size() -1 ); //get last item, should be the most recent thing in the 
         Set<MazeConfig> possibleMoves = new HashSet<>();
 
         for(int deltaRow = -1; deltaRow <= 1; deltaRow++){
@@ -25,12 +25,17 @@ public class MazeConfig {
                 if(deltaRow + deltaCol == 0)
                     continue; //skip diagonals and middle
 
-                ArrayList<WNode<Location>> newPath = new ArrayList<>();
+                WNode node = maze.getNode(current.getValue().getRow() + deltaRow, current.getValue().getCol() + deltaCol);
+                if(checked.contains(node))
+                    continue;
+
+                ArrayList<WNode> newPath = new ArrayList<>();
                 newPath.addAll(path);
 
-                newPath.add( maze.getNode(current.getValue().getRow() + deltaRow, current.getValue().getCol() + deltaCol) );
                 
-                possibleMoves.add( new MazeConfig(maze, newPath) );
+                newPath.add(node);
+                
+                possibleMoves.add( new MazeConfig(newPath) );
             }
         }
         
@@ -39,7 +44,7 @@ public class MazeConfig {
     }
 
     public boolean isValid(){
-        for(WNode<Location> node: path){
+        for(WNode node: path){
             if(node.getValue().isWall())
                 return false;
         }
@@ -52,5 +57,13 @@ public class MazeConfig {
 
     public int getWeight(){
         return weight;
+    }
+
+    public ArrayList<WNode> getPath(){
+        return path;
+    }
+
+    public int compareTo(MazeConfig other){
+        return weight - other.getWeight();
     }
 }
