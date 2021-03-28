@@ -20,12 +20,19 @@ public class MazeConfig implements Comparable<MazeConfig>{
         WNode current = getLastWNode(); //get last item, should be the most recent thing in the 
         Set<MazeConfig> possibleMoves = new HashSet<>();
 
+        int currentRow = current.getValue().getRow();
+        int currentCol = current.getValue().getCol();
+
         for(int deltaRow = -1; deltaRow <= 1; deltaRow++){
             for(int deltaCol = -1; deltaCol <= 1; deltaCol++){
                 if(deltaRow + deltaCol == 0)
                     continue; //skip diagonals and middle
+                if(currentRow + deltaRow < 0 || currentRow + deltaRow >= maze.getHeight())
+                    continue;
+                if(currentCol + deltaCol < 0 || currentCol + deltaCol >= maze.getWidth())
+                    continue;
 
-                WNode node = maze.getNode(current.getValue().getRow() + deltaRow, current.getValue().getCol() + deltaCol);
+                WNode node = maze.getNode(currentRow + deltaRow, currentCol + deltaCol);
                 if(checked.contains(node))
                     continue;
 

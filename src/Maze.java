@@ -21,4 +21,12 @@ public class Maze {
     public WNode getNode(int row, int col){
         return maze[row][col];
     }
+    public int getWidth(){
+        if(getHeight() == 0)
+            return 0;
+        return maze[0].length;
+    }
+    public int getHeight(){
+        return maze.length;
+    }
 }
