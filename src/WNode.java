@@ -9,6 +9,9 @@ public class WNode extends Node implements Comparable<WNode>{
         super(value, parent);
         this.weight = weight;
     }
+    public WNode(Location value){
+        super(value);
+    }
 
     public int getWeight(){
         return weight;
