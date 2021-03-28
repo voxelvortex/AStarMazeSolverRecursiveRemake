@@ -18,7 +18,9 @@ public class Solver {
         ArrayList<MazeConfig> configs = new ArrayList<>();
         HashSet<WNode> checked = new HashSet<>();
         
-        starterPath.add( maze.getNode(start.getRow(), start.getCol()) );
+        WNode startNode = maze.getNode(start.getRow(), start.getCol());
+        startNode.setWeight(start, end);
+        starterPath.add(startNode);
         configs.add( new MazeConfig(starterPath) );
 
         while(!configs.isEmpty()){
@@ -30,6 +32,7 @@ public class Solver {
                 }
 
                 if(potentialSolution.isValid()){
+                    potentialSolution.getLastWNode().setWeight(start, end);
                     checked.add(potentialSolution.getLastWNode());
                     configs.add(potentialSolution);
                 }
